@@ -13,6 +13,8 @@ class DB {
       //dsn = data source name
       $dsn = "mysql:host=" . $this->dbHost . ";dbname=" . $this->dbName;
       $this->conn = new PDO($dsn, $this->dbUser, $this->dbPassword);
+      //debug for db errors
+      $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
       } catch (PDOException $e) {
       die("DB connection failed: " . $e->getMessage());
     }
@@ -28,6 +30,11 @@ class DB {
     echo "data inserted";
   }
 
+  public function editData($id, $name){
+    $sql = "UPDATE staff_db SET name = :name WHERE id = :id";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute(['id'=> $id, 'name'=> $name]);
+  }
 
 }
 

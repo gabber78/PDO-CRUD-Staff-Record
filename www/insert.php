@@ -12,7 +12,6 @@ require_once '../db.php';
 
       $db = new DB();
       $db->insertData($name, $position, $email, $startDate);
-      echo
       header('Location: index.php');
     }
 

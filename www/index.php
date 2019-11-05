@@ -2,8 +2,6 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-
-
 require_once('../db.php');
 $db = new DB();
 
@@ -18,7 +16,7 @@ $db = new DB();
    </head>
    <body>
      <h1>Add new staff member</h1>
-      <form class="" action="insert.php" method="post">
+      <form action="insert.php" method="post">
         <input type="text" name="name" placeholder="Name">
         <input type="text" name="position" placeholder="Position">
         <input type="text" name="email" placeholder="email">
@@ -28,10 +26,11 @@ $db = new DB();
 
      <h1>Edit staff member</h1>
      <form class="" action="edit.php" method="post">
-       <input type="text" name="name" placeholder="Name">
-       <input type="text" name="position" placeholder="Position">
+       <input type="list" name="id" placeholder="Id">
+       <input type="List" name="name" placeholder="Name">
+       <!--<input type="text" name="position" placeholder="Position">
        <input type="text" name="email" placeholder="email">
-       <input type="text" name="startDate" placeholder="Start Date">
+       <input type="date" name="startDate" placeholder="Start Date"> -->
        <input type="submit" name="editData" value="Submit Changes">
      </form>
 
@@ -48,5 +47,6 @@ $db = new DB();
 
       </form>
      <h1>List of current staff</h1>
+
    </body>
  </html>
