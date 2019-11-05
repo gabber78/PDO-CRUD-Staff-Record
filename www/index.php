@@ -1,6 +1,13 @@
 <?php
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
- ?>
+
+
+require_once('../db.php');
+$db = new DB();
+
+?>
 
 
  <!DOCTYPE html>
@@ -15,7 +22,7 @@
         <input type="text" name="name" placeholder="Name">
         <input type="text" name="position" placeholder="Position">
         <input type="text" name="email" placeholder="email">
-        <input type="text" name="startDate" placeholder="Start Date">
+        <input type="date" name="startDate" placeholder="Start Date">
         <input type="submit" name="insertData" value="Add new member">
       </form>
 
@@ -34,7 +41,12 @@
         <input type="submit" name="deleteData" value="Delete record">
 
       </form>
+
      <h1>Search staff</h1>
+      <form method="get">
+        <input type="text" name="search" placeholder="Search">
+
+      </form>
      <h1>List of current staff</h1>
    </body>
  </html>
