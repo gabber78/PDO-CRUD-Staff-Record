@@ -1,52 +1,66 @@
 <?php
+
+include('header.php');
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
 require_once('../db.php');
 $db = new DB();
 
+
+//delete data
+if (isset($_POST['deleteData'])) {
+  //echo $_POST['id'];
+  $id = $_POST['id'];
+  $db->deleteData($id);
+}
+
 ?>
 
 
- <!DOCTYPE html>
- <html lang="en" dir="ltr">
-   <head>
-     <meta charset="utf-8">
-     <title>Company staff record</title>
-   </head>
-   <body>
-     <h1>Add new staff member</h1>
-      <form action="insert.php" method="post">
-        <input type="text" name="name" placeholder="Name">
-        <input type="text" name="position" placeholder="Position">
-        <input type="text" name="email" placeholder="email">
-        <input type="date" name="startDate" placeholder="Start Date">
-        <input type="submit" name="insertData" value="Add new member">
-      </form>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title>Company Staff Database</title>
+  </head>
+  <body>
 
-     <h1>Edit staff member</h1>
-     <form class="" action="edit.php" method="post">
-       <input type="text" name="id" placeholder="Id">
-       <input type="text" name="name" placeholder="Name">
-       <!--<input type="text" name="position" placeholder="Position">
-       <input type="text" name="email" placeholder="email">
-       <input type="date" name="startDate" placeholder="Start Date"> -->
-       <input type="submit" name="editData" value="Submit Changes">
-     </form>
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Position</th>
+          <th scope="col">eMail</th>
+          <th scope="col">Start Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php
+          $data = $db->getData();
+          foreach($data as $row) {
+          ?>
+          <tr>
+            <td><?php echo $row['id'];?></td>
+            <td><?php echo $row['name'];?></td>
+            <td><?php echo $row['position'];?></td>
+            <td><?php echo $row['email'];?></td>
+            <td><?php echo $row['startDate'];?></td>
+          </tr>
 
-     <h1>Delete staff</h1>
-      <form method="post">
-        <input type="text" name="id" placeholder="Id">
-        <input type="submit" name="deleteData" value="Delete record">
 
-      </form>
+          <?php
+          }
+         ?>
 
-     <h1>Search staff</h1>
-      <form method="get">
-        <input type="text" name="search" placeholder="Search">
 
-      </form>
-     <h1>List of current staff</h1>
+      </tbody>
+    </table>
 
-   </body>
- </html>
+
+
+  </body>
+</html>

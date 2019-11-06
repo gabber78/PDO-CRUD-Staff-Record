@@ -36,6 +36,30 @@ class DB {
     $stmt->execute(['id'=> $id, 'name'=> $name]);
   }
 
+  public function searchData($name){
+    $sql = "SELECT * FROM staff_db WHERE name LIKE :name"; //so it gives back not only exact search terms
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute(['name' => '%' . $name . '%']);
+    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $data;
+  }
+
+  public function  getData(){
+    $sql = "SELECT * FROM staff_db";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute();
+    $data = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $data;
+  }
+
+  public function deleteData($id){
+    $sql = "DELETE FROM staff_db WHERE id = :id";
+    $stmt = $this->conn->prepare($sql);
+    $stmt->execute(['id'=> $id]);
+    //echo "ID: " . $id . " was deleted.";
+    echo $stmt->rowCount() . " rows were affected.";
+  }
+
 }
 
 
