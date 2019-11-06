@@ -26,8 +26,8 @@ $db = new DB();
 
      <h1>Edit staff member</h1>
      <form class="" action="edit.php" method="post">
-       <input type="list" name="id" placeholder="Id">
-       <input type="List" name="name" placeholder="Name">
+       <input type="text" name="id" placeholder="Id">
+       <input type="text" name="name" placeholder="Name">
        <!--<input type="text" name="position" placeholder="Position">
        <input type="text" name="email" placeholder="email">
        <input type="date" name="startDate" placeholder="Start Date"> -->
