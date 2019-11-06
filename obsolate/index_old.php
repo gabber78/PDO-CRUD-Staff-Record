@@ -13,7 +13,6 @@ if (isset($_GET['search'])) {
 }
 
 //delete data
-
 if (isset($_POST['deleteData'])) {
   //echo $_POST['id'];
   $id = $_POST['id'];

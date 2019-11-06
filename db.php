@@ -56,8 +56,8 @@ class DB {
     $sql = "DELETE FROM staff_db WHERE id = :id";
     $stmt = $this->conn->prepare($sql);
     $stmt->execute(['id'=> $id]);
-    //echo "ID: " . $id . " was deleted.";
-    echo $stmt->rowCount() . " rows were affected.";
+    echo "ID: " . $id . "Name: " . $name . " was deleted.";
+    //echo $stmt->rowCount() . " rows were affected.";
   }
 
 }

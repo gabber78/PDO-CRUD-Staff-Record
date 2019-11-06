@@ -12,9 +12,9 @@ if (isset($_POST['deleteData'])) {
 }
 
  ?>
-<h3>Delete staff member</h3>
+<h3>Delete employee from database</h3>
  <form method="post" action="delete.php">
    <input type="text" name="id" placeholder="Id">
-   <input type="submit" name="deleteData" value="Delete record">
+   <input type="submit" name="deleteData" value="Delete">
 
  </form>

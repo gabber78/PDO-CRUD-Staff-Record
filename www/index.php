@@ -59,8 +59,5 @@ if (isset($_POST['deleteData'])) {
 
       </tbody>
     </table>
-
-
-
   </body>
 </html>

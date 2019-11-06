@@ -1,5 +1,5 @@
 <?php
-include('header.php');
+include('search.php');
 
 require_once '../db.php';
 

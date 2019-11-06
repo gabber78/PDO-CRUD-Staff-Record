@@ -6,6 +6,7 @@ ini_set('display_errors', 1);
 require_once('../db.php');
 $db = new DB();
 
+//search
 if (isset($_GET['search'])) {
   $data = $db->searchData($_GET['search']);
 }else {
@@ -41,18 +42,11 @@ if (isset($_GET['search'])) {
          <li class="nav-item active">
            <a class="nav-link" href="delete.php">Delete<span class="sr-only">(current)</span></a>
          </li>
+         <li class="nav-item active">
+           <a class="nav-link" href="search.php">Search<span class="sr-only">(current)</span></a>
+         </li>
 
        </ul>
-       <form class="form-inline my-2 my-lg-0" method="get">
-         <input class="form-control mr-sm-2" type="search" placeholder="Search employee" aria-label="Search"
-         value="<?php if (isset($_GET['search'])) {
-                 echo $_GET['search'];
-               }?>" >
-         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-       </form>
-
-
-     </div>
    </nav>
 
    </body>
