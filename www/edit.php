@@ -6,9 +6,12 @@ require_once '../db.php';
     if(isset($_POST['editData'])){
       $id = $_POST['id'];
       $name = $_POST['name'];
+      $position = $_POST['position'];
+      $email = $_POST['email'];
+      $startDate = $_POST['startDate'];
 
       $db = new DB();
-      $db->editData($id, $name);
+      $db->editData($id, $name, $position, $email, $startDate);
       header('Location: index.php');
     }
 
@@ -28,6 +31,7 @@ require_once '../db.php';
              <input type="date" name="startDate" placeholder="Start Date" value="<?php echo $row['startDate'];?>">
 
              <input type="submit" name="editData" value="Submit Changes">
+
 
        <?php }
           ?>

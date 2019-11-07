@@ -27,13 +27,19 @@ class DB {
     $stmt = $this->conn->prepare($sql);
     //execute the query
     $stmt->execute(['name' => $name, 'position' => $position, 'email' => $email, 'startDate' => $startDate]);
-    echo "data inserted";
+    echo "New employee added!";
   }
 
-  public function editData($id, $name){
-    $sql = "UPDATE staff_db SET name = :name WHERE id = :id";
+  public function editData($id, $name, $position, $email, $startDate){
+    $sql = "UPDATE staff_db SET
+            name      = :name,
+            position  = :position,
+            email     = :email,
+            startDate = :startDate
+            WHERE id  = :id";
+
     $stmt = $this->conn->prepare($sql);
-    $stmt->execute(['id'=> $id, 'name'=> $name]);
+    $stmt->execute(['id' => $id, 'name' => $name, 'position' => $position, 'email' => $email, 'startDate' => $startDate]);
   }
 
   public function searchData($name){
@@ -56,7 +62,7 @@ class DB {
     $sql = "DELETE FROM staff_db WHERE id = :id";
     $stmt = $this->conn->prepare($sql);
     $stmt->execute(['id'=> $id]);
-    echo "ID: " . $id . "Name: " . $name . " was deleted.";
+    echo "Employee with ID: " . $id . " was deleted.";
     //echo $stmt->rowCount() . " rows were affected.";
   }
 
