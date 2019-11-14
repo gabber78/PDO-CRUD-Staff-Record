@@ -1,17 +1,17 @@
 <?php
 
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+    error_reporting(E_ALL);
+    ini_set('display_errors', 1);
 
-require_once('../db.php');
-$db = new DB();
+    require_once('../db.php');
+    $db = new DB();
 
-//search
-if (isset($_GET['search'])) {
-  $data = $db->searchData($_GET['search']);
-}else {
-  $data = $db->getData();
-}
+    //search
+    if (isset($_GET['search'])) {
+        $data = $db->searchData($_GET['search']);
+      }else {
+        $data = $db->getData();
+    }
 
  ?>
 
