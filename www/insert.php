@@ -2,15 +2,19 @@
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+include('header.php');
+
 //add variables to avoid errors first run the page (input fields)
 $name = $email = $position = '';
+$startDate = date(gettimeofday);
 
 //collect errors in an error array
 $errors = array('email'=>'','name'=>'','position'=>'');
 
 require_once '../db.php';
+//$db = new DB();
 
-    if(isset($_POST['insertData'])){
+  /*  if(isset($_POST['insertData'])){
       $name = $_POST['name'];
         if(!preg_match("/^[a-zA-Z-][a-zA-Z -]*$/",$name)) { die ("invalid characters");}
       $position = $_POST['position'];
@@ -18,6 +22,7 @@ require_once '../db.php';
       $email = $_POST['email'];
         if (!empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL) === false) { die ("invalid  email");}
       $startDate = $_POST['startDate'];
+    }*/
 
 
     //new better validation soliton
@@ -52,16 +57,51 @@ require_once '../db.php';
     					$errors['email'] = "Email must be a valid email address!";
     				}
           }
-
-
-
     }
-
 
       $db = new DB();
       $db->insertData($name, $position, $email, $startDate);
       header('Location: index.php');
-    }
-
 
 ?>
+
+
+<style>
+
+    .container{
+      text-align: center;
+	  padding-bottom: 20px;
+     }
+
+    .form {
+      text-align: center;
+      margin-top: 10px;
+      }
+
+    .header  {
+      background-image: linear-gradient(rgba(106, 104, 104, 0.44), rgba(0, 0, 0, 0.7)), url(img/happy-employees.jpg);
+      background-size:cover;
+      background-position: center;
+      height: 90.5vh;
+      background-attachment: fixed;
+    }
+
+	h3,p {
+		color: white;
+	}
+</style>
+
+<div class="header">
+	<div class="container">
+
+	   <h3>Add new employee</h3><br>
+		 <form action="insert.php" method="post" position="center">
+			<input class="form" type="text" name="name" placeholder="Name" required><br>
+			<input class="form" type="text" name="position" placeholder="Position" required><br>
+			<input class="form" type="text" name="email" placeholder="email" required><br>
+			<p class="form">Start date</p>
+			<input class="form" type="text" name="startDate" placeholder="Start Date"><br>
+			<input class="form" type="submit" name="insertData" value="Submit"><br>
+		  </form>
+	</div>
+</div>
