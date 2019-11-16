@@ -95,13 +95,13 @@ require_once '../db.php';
 	<div class="container">
 
 	   <h3>Add new employee</h3><br>
-		 <form action="insert.php" method="post" position="center">
-			<input class="form" type="text" name="name" placeholder="Name" required><br>
-			<input class="form" type="text" name="position" placeholder="Position" required><br>
-			<input class="form" type="text" name="email" placeholder="email" required><br>
+		 <form action="insert.php" method="post">
+			<input class="form" name="name" placeholder="Name"  type="text"><br>
+			<input class="form" name="position" placeholder="Position"  type="text"><br>
+			<input class="form" name="email" placeholder="email"  type="text"><br>
 			<p class="form">Start date</p>
-			<input class="form" type="text" name="startDate" placeholder="Start Date"><br>
-			<input class="form" type="submit" name="insertData" value="Submit"><br>
+			<input class="form" name="startDate" placeholder="Start Date" type="text"><br>
+			<input class="form" name="insertData" type="submit" value="Submit"><br>
 		  </form>
 	</div>
 </div>
