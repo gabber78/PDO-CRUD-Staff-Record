@@ -3,7 +3,7 @@
 class DB {
   private $dbHost       = "localhost";
   private $dbUser       = "db_admin";
-  private $dbPassword   = "FTaQD3LcCCbxPF4e";
+  protected $dbPassword   = "FTaQD3LcCCbxPF4e";
   private $dbName       = "company_staff_record";
   private $conn;
 

@@ -8,7 +8,6 @@ ini_set('display_errors', 1);
 require_once '../db.php';
 $db = new DB();
 
-
 //delete data
 if (isset($_POST['deleteData'])) {
   //echo $_POST['id'];

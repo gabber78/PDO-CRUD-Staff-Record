@@ -25,7 +25,7 @@ require_once '../db.php';
     }*/
 
 
-    //new better validation soliton
+    //new better validation solution
     if (isset($_POST['submit'])) { //if submit does not work use insertData
 
       //check name
@@ -96,7 +96,7 @@ require_once '../db.php';
 
 	   <h3>Add new employee</h3><br>
 		 <form action="insert.php" method="post">
-			<input class="form" name="name" placeholder="Name"  type="text"><br>
+			<input class="form" name="name" placeholder="Name" type="text"><br>
 			<input class="form" name="position" placeholder="Position"  type="text"><br>
 			<input class="form" name="email" placeholder="email"  type="text"><br>
 			<p class="form">Start date</p>
