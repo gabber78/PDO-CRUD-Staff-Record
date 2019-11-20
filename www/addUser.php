@@ -1,42 +1,43 @@
 <?php
 //debug
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
+  error_reporting(E_ALL);
+  ini_set('display_errors', 1);
 
   include('header.php');
-
   require_once('../db.php');
+
   $db = new DB();
 
 //collect errors in an error array
-$name= $position= $email= '';
-$errors = array('email'=>'','name'=>'','position'=>'');
 
+    $errors = array(
+        'email' => null,
+        'name' => null,
+        'position' => null
+    );
 
-    //add form data to database
+if(isset($_POST['insertData'])){
 
-if(isset($_POST['submit'])){
+  //check empty fields
+  /*if (!empty($_POST['name']) || !empty($_POST['email']) || !empty($_POST['position'])) {
+      $errors['general'] = 'All property is required <br />';
+    }*/
 
-    $name = $_POST['name'];
-   //if(!preg_match("/^[a-zA-Z-][a-zA-Z -]*$/",$name)) { die ("invalid characters");} <-- ez mukodik
-    if(empty($_POST['name'])){
-        $errors['name'] = 'A title is required <br />';
-    } else{
-        $title=$_POST['name'];
-        if (!preg_match('/^[a-zA-Z\s]+$/', $name)) {
-            $errors['name'] = "Name must be letters and spaces <br />";
+    if (!preg_match('/^[a-zA-Z\s]+$/', $_POST['name'])) {
+          $errors['name'] = "Name must be letters and spaces <br />";
         }
-    }
+
+    if (empty($_POST['position']) && !preg_match("/^[a-zA-Z'-]+$/", $_POST['position'])) {
+            $errors['position'] = "invalid position name";
+        }
+
+    if (empty($_POST['email']) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) === false) {
+            $errors['email'] = "invalid  email";
+        }
+
+  }
 
 
-
-    $position = $_POST['position'];
-    if(!preg_match("/^[a-zA-Z'-]+$/",$position)) { die ("invalid position name");}
-
-    $email = $_POST['email'];
-    if (!empty($email) && filter_var($email, FILTER_VALIDATE_EMAIL) === false) { die ("invalid  email");}
-    $startDate = $_POST['startDate'];
-}
 
 //testing more advanced validation
 /*
@@ -101,6 +102,11 @@ if (isset($_POST['submit'])) { //if submit does not work use insertData
 	h3,p {
 		color: white;
 	}
+
+  .error-text {
+    color: red;
+    }
+
 </style>
 
 <div class="header">
@@ -108,23 +114,41 @@ if (isset($_POST['submit'])) { //if submit does not work use insertData
 
 	   <h3>Add new employee</h3><br>
 		 <form action="addUser.php" method="post" position="center">
-			<input class="form" type="text" name="name" placeholder="Name" value="<?php echo htmlspecialchars($name); ?>"><br>
-             <div> <?php echo $errors['name']; ?></div>
-			<input class="form" type="text" name="position" placeholder="Position" required><br>
-			<input class="form" type="text" name="email" placeholder="email" required><br>
-			<p class="form">Start date</p>
+
+       <!--<?php if (isset($errors['general'])): ?>
+           <div class="error-text"> <?php echo $errors['general']; ?></div>
+       <?php endif; ?> -->
+
+			<input class="form" type="text" name="name" placeholder="Name"><br>
+        <?php if (!is_null($errors['name'])): ?>
+            <div class="error-text"> <?php echo $errors['name']; ?></div>
+        <?php endif; ?>
+
+			<input class="form" type="text" name="position" placeholder="Position"><br>
+        <?php if (!is_null($errors['position'])): ?>
+            <div class="error-text"> <?php echo $errors['position']; ?></div>
+        <?php endif; ?>
+
+			<input class="form" type="text" name="email" placeholder="email"><br>
+        <?php if (!is_null($errors['email'])): ?>
+            <div class="error-text"> <?php echo $errors['email']; ?></div>
+        <?php endif; ?>
+
+      <p class="form">Start date</p>
 			<input class="form" type="date" name="startDate" placeholder="Start Date"><br>
+
 			<input class="form" type="submit" name="insertData" value="Submit"><br>
 		  </form>
 	</div>
 </div>
 
-
 <?php
-//add to database
+    //ITT ELMENTJUK Az adatokat, ha nincs hiba
+    if (is_null(array_values($errors))) {
 
-$db = new DB();
-$db->insertData($name, $position, $email, $startDate);
-header('Location: index.php');
+    //add to database
+    $db = new DB();
+    $db->insertData($_POST['name'], $_POST['position'], $_POST['email'], $_POST['startdate']);
+    header('Location: index.php');
+    }
 ?>
-
