@@ -39,6 +39,13 @@ if(isset($_POST['insertData'])){
 
 
 
+if (array_filter($errors)) {
+    //echo 'errors in the form';
+}else {
+    //echo 'form is valid';
+    header('Location: index.php');
+}
+
 //testing more advanced validation
 /*
 if (isset($_POST['submit'])) { //if submit does not work use insertData

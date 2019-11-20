@@ -84,7 +84,7 @@ if (isset($_POST['submit'])) { //if submit does not work use insertData
 	<div class="container">
 
 	   <h3>Add new employee</h3><br>
-		 <form action="addUser.php" method="post" position="center">
+		 <form action="addUser.php" method="post">
 			<input class="form" type="text" name="name" placeholder="Name">
 			<input class="form" type="text" name="position" placeholder="Position" required><br>
 			<input class="form" type="text" name="email" placeholder="email" required><br>
