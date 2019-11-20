@@ -14,6 +14,7 @@ $errors = array(
     'position' => null
 );
 
+
 //if(!preg_match("/^[a-zA-Z-][a-zA-Z -]*$/",$name)) { die ("invalid characters");} <-- ez mukodik
 if (!empty($_POST['name']) || !empty($_POST['email']) || !empty($_POST['position'])) {
     $errors['general'] = 'All property is required <br />';
@@ -34,6 +35,8 @@ if (is_null(array_values($errors))) {
     $db->insertData($_POST['name'], $_POST['position'], $_POST['email'], $_POST['startdate']);
     header('Location: index.php');
 }
+
+
 //testing more advanced validation
 /*
 if (isset($_POST['submit'])) { //if submit does not work use insertData
@@ -66,6 +69,7 @@ if (isset($_POST['submit'])) { //if submit does not work use insertData
     }
 }
 */
+
 ?>
 <style>
     .container {
